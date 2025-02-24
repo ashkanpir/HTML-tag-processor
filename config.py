@@ -1,17 +1,14 @@
 """
 Configuration file for Multilingual HTML Translator
-Original site: https://hitdarderut-haaretz.org
-Translated versions: https://degeneration-of-nation.org
-
-This file contains all configurable parameters for the translation system,
-including language settings, API configurations, and parsing parameters.
+Updated for OpenAI compatibility
 """
 
 # API Configuration
 API_CONFIG = {
-    'model': 'claude-3-5-sonnet-20241022',
-    'old_model': 'claude-3-5-sonnet-20240620',
-    'headers': {"anthropic-beta": "max-tokens-3-5-sonnet-2024-07-15,prompt-caching-2024-07-31"}
+    'model': 'gpt-3.5-turbo',  # ✅ Use a valid OpenAI model
+    'max_tokens': 4096,
+    'temperature': 0.3,
+    'api_key': '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'  # ✅ Literal API key
 }
 
 # Translation Process Configuration
@@ -32,12 +29,10 @@ TRANSLATION_CONFIG = {
 
 # Language Settings
 LANGUAGE_CONFIG = {
-    # Basic language properties
     'default_multiplier': 1.2,
     'rtl_languages': ['he', 'ar'],
     'asian_languages': ['ja', 'ko', 'zh'],
 
-    # Unicode ranges for validation
     'hebrew_chars': {
         'ranges': [
             (0x05D0, 0x05EA),  # Hebrew letters
@@ -45,30 +40,17 @@ LANGUAGE_CONFIG = {
         ]
     },
 
-    # Source language text replacements
     'source_text': {
         'website_name': "התדרדרות הארץ",
         'more_text': "עוד",
         'about_text': "אודות"
     },
 
-    # Text splitting configuration for chunking
     'text_separators': [
-        "<br><br><div>",
-        "<br><div>",
-        "<div>",
-        "<br><br><b>",
-        "<br><b>",
-        "<br><br><br>",
-        "<br><br>",
-        "<br>",
-        ". ",
-        "? ",
-        ", ",
-        " "
+        "<br><br><div>", "<br><div>", "<div>", "<br><br><b>", "<br><b>",
+        "<br><br><br>", "<br><br>", "<br>", ". ", "? ", ", ", " "
     ],
 
-    # Language configurations
     'languages': {
         'en': {
             'name': "English",
@@ -81,14 +63,13 @@ LANGUAGE_CONFIG = {
             'translator_note': "Translator's note",
             'example': "Hello&nbsp;world<br><b>Title"
         }
-        # Add other languages as needed
     }
 }
 
 # Path mapping configuration
 PATH_MAPPING_CONFIG = {
     'source_paths': {
-        'source_section': 'translated_section',  # Example: 'blog': 'en-blog'
+        'source_section': 'translated_section'
     }
 }
 
